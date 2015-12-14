@@ -1,4 +1,4 @@
-PVector mouse;   //declare a P
+PVector mouse;   //declare a PVector called mouse
 Raindrop r;      //declare a new Raindrop called r
 
 // On your own, create an array of Raindrop objects instead of just one
