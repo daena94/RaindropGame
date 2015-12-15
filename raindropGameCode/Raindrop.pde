@@ -1,14 +1,15 @@
 class Raindrop {
-  PVector loc, vel;
+  PVector loc, vel, a;
   int r, diam;
 
 
 
 Raindrop(float x,float y) {
   diam = 100;
-  loc = new PVector(random(diam,width-diam), random(diam,height-diam));
-  vel = PVector.random2D();
-    vel.mult(10);
+  loc = new PVector(random(diam,width-diam), 0);
+  vel = new PVector(0,random(1,10));
+  a = new PVector(0,0.001);
+
 }
 
 
@@ -18,17 +19,11 @@ void display() {
   ellipse(loc.x,loc.y,diam,diam);
 }
 
-void move() {
+void fall() {
   loc.add(vel);
+      vel.add(a);
 }
 
-void run(){
-  display();
-  move();
-}
-void fall() {
-  
-}
 boolean isInContactWith(PVector mouse) {
   if (dist(mouse.x,mouse.y,loc.x,loc.y)<diam/2){
     return true;
@@ -39,6 +34,7 @@ boolean isInContactWith(PVector mouse) {
     }
 }
 void reset(){
-
+loc.x = random(width);
+loc.y = 0;
 }
 }
