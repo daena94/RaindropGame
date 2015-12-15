@@ -5,7 +5,7 @@ class Raindrop {
 
 
 Raindrop(float x,float y) {
-  diam = 100;
+  diam = 50;
   loc = new PVector(random(diam,width-diam), 0);
   vel = new PVector(0,random(1,10));
   a = new PVector(0,0.001);
