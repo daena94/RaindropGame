@@ -4,7 +4,7 @@ class Bad {
 
 
 
-  Bad() {
+  Bad(float x, float y) {
     diam = 50;
     loc = new PVector(random(diam, width-diam), 0);
     vel = new PVector(0, random(1, 10));
@@ -25,9 +25,11 @@ class Bad {
 
   boolean isInContactWith(Catcher c) {
     if (c.loc.dist(loc)<c.diam/2 + diam/2) {
-      mode = 3;
-   
-    }
+      return true;
+   }
+    else{
+      return false;
+  }
   }
 
 

@@ -13,4 +13,5 @@ class Score {
   void addScore() {
     scoref ++ ;
   }
+
 }
