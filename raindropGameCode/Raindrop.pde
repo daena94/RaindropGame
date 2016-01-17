@@ -1,74 +1,40 @@
-class Raindrop {
-  PVector loc, vel;
-  int r, diam;
-  float gravity;
-  color a, b, c, d;
-  float ran;
-  boolean yes = false;
+class Raindrop {  //new class called Raindrop
+  PVector loc, vel, a;  //new PVectors loc, vel, a
+  int r, diam;  //initialize variables r, diam
 
-  Raindrop(float w, float v) {
-    diam = 50;
-    loc = new PVector(w, v);
-    a = color(255);
-    b = color(255, 0, 0);
-    c = color(0, 255, 0);
-    d = color(0, 0, 255);
-    vel = PVector.random2D();
-    vel.mult(20);
-    gravity = random(.2, .8);
-    ran = random(0, 1);
+
+
+  Raindrop(float x, float y) {  //float coordinates of Raindrop
+    diam = 50;  //diam equals 50
+    loc = new PVector(random(diam, width-diam), 0);  //initialize loc PVector
+    vel = new PVector(0, random(1, 10));  //initialize vel PVector
+    a = new PVector(0, 0.001);  //initialize a PVector
   }
 
 
   void display() {
-    fill(a);
-    noStroke();
-    ellipse(loc.x, loc.y, diam, diam);
+    fill(255);  //set fill to white
+    noStroke();  //no stroke
+    ellipse(loc.x, loc.y, diam, diam);  //draw an ellipse
   }
 
   void fall() {
-    loc.y+=vel.y;
-    if (loc.y<=height) {
-      vel.ye+=gravity;
-    }
+    loc.add(vel);  //add velocity to raindrop
+    vel.add(a);  //add acceleration to velocity
   }
 
-  boolean isInContactWith(Catcher c) {
-    if (c.loc.dist(loc)<c.diam/2 + diam/2) {
-      return true;
-    } 
-    else {
-      return false;
+  boolean isInContactWith(Catcher c) {  //the raindrop is in contact with the catcher...
+    if (c.loc.dist(loc)<c.diam/2 + diam/2) {  //if the raindrop is touching to coordinates of the catcher...
+      return true;  //return true
+    } else {  //if not...
+      return false;  //return false
     }
   }
 
 
 
   void reset() {
-    loc.x = random(width);
-    loc.y = 0;
-    vel = PVector.random2D();
-    vel.mult(4);
-  }
-  void colorChange() {
-    if (ran>.25 && ran<.5) {
-      a=b;
-    }
-    if (ran>.5 && ran<.75) {
-      a=c;
-    }
-    if (ran>.75) {
-      a=d;
-    }
-  }
-  
-  boolean y() {
-    if (a==a) {
-      return true;
-    }
-    else {
-      return false;
-    }
+    loc.x = random(width);  //choose a random x-value for the raindrop
+    loc.y = 0;  //set the y-value to 0
   }
 }
-
